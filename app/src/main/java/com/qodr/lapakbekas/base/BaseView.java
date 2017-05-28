@@ -5,14 +5,10 @@ package com.qodr.lapakbekas.base;
  */
 public interface BaseView {
 
-    void showProgress(String message);
+    void showProgress();
+    void showError();
+    void showEmpty();
+    void onCompleted();
 
-    void showProgress(String message, int progress);
-
-    void hideProgress();
-
-    void showToast(String msg);
-
-    void close();
 
 }

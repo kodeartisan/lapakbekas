@@ -5,7 +5,8 @@ import android.content.Context;
 import com.qodr.lapakbekas.di.module.ActivityModule;
 import com.qodr.lapakbekas.di.scope.ActivityScope;
 import com.qodr.lapakbekas.di.scope.ContextLife;
-import com.qodr.lapakbekas.mvp.ui.activity.HomeActivity;
+import com.qodr.lapakbekas.http.utils.RetrofitBukalapakUtils;
+import com.qodr.lapakbekas.mvp.ui.activity.MainActivity;
 import com.qodr.lapakbekas.rx.RxBus;
 import com.qodr.lapakbekas.utils.PreferencesUtils;
 
@@ -28,5 +29,7 @@ public interface ActivityComponent {
 
     RxBus getRxBus();
 
-    void inject(HomeActivity activity);
+    RetrofitBukalapakUtils mRetrofitBukalapakUtils();
+
+    void inject(MainActivity activity);
 }

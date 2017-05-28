@@ -1,11 +1,10 @@
 package com.qodr.lapakbekas.di.module.http;
 
+import android.util.Log;
+
 import com.qodr.lapakbekas.di.qualifier.BukalapakUrl;
 import com.qodr.lapakbekas.http.service.BukalapakService;
-import com.qodr.lapakbekas.http.utils.BasicAuthInterceptor;
 import com.qodr.lapakbekas.http.utils.RetrofitBukalapakUtils;
-
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -22,20 +21,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class BukalapakHttpModule extends BaseHttpModule {
 
+    public static final String TAG = BukalapakHttpModule.class.getSimpleName();
+
     @Singleton
     @Provides
     @BukalapakUrl
-    Retrofit provideBukalapakRetrofit(Retrofit.Builder retrofitBuilder, OkHttpClient.Builder okhttpBuilder, OkHttpClient client, BasicAuthInterceptor basicAuthInterceptor) {
-        OkHttpClient okHttpClient = okhttpBuilder.addInterceptor(basicAuthInterceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true)
-                .build();
+    Retrofit provideBukalapakRetrofit(Retrofit.Builder retrofitBuilder, OkHttpClient.Builder okhttpBuilder, OkHttpClient client) {
 
         return retrofitBuilder
+                .client(client)
                 .baseUrl(BukalapakService.API_URL)
-                .client(okHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

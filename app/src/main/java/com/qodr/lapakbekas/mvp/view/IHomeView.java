@@ -5,5 +5,5 @@ import com.qodr.lapakbekas.base.BaseView;
 /**
  * Created by kodeartisan on 15/05/17.
  */
-public interface HomeView extends BaseView {
+public interface IHomeView extends BaseView {
 }

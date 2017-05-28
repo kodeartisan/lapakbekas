@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ import rx.Subscription;
 /**
  * Created by kodeartisan on 14/05/17.
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity extends AppCompatActivity{
 
     public static final String TAG = BaseActivity.class.getSimpleName();
 
@@ -40,7 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     private Unbinder unbinder;
 
-    //protected T mPresenter;
 
     protected Subscription mSubscription;
 
@@ -73,6 +73,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         initData();
         initToolbar();
         initViewsAndListener();
+
         /*if(mPresenter != null) {
             mPresenter.onCreate();
         }*/
@@ -132,43 +133,5 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
 
-    @Override
-    public void showProgress(String message) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-            mProgressDialog.getProgressHelper().setBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            mProgressDialog.setCancelable(false);
-        }
-        mProgressDialog.setTitleText(message);
-        mProgressDialog.show();
 
-    }
-
-    @Override
-    public void showProgress(String message, int progress) {
-        mProgressDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        mProgressDialog.getProgressHelper().setBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        mProgressDialog.setTitleText(message);
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.getProgressHelper().setProgress(progress);
-        mProgressDialog.show();
-    }
-
-    @Override
-    public void hideProgress() {
-        if (mProgressDialog != null) {
-            mProgressDialog.dismiss();
-        }
-    }
-
-    @Override
-    public void showToast(String msg) {
-        if(!isFinishing())
-            Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void close() {
-        finish();
-    }
 }

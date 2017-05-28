@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/main_home"
+        title="Home" />
+    <tab
+        id="@+id/tab_categories"
+        icon="@drawable/main_type"
+        title="Kategori" />
+    <tab
+        id="@+id/tab_cart"
+        icon="@drawable/main_cart"
+        title="Keranjang" />
+    <tab
+        id="@+id/tab_user"
+        icon="@drawable/main_user"
+        title="Profil" />
+</tabs>
